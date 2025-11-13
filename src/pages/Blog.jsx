@@ -1,8 +1,27 @@
-import React from "react";
-import { useLoaderData, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Blog = () => {
-    const { blogs } = useLoaderData();
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const data = await response.json();
+                setBlogs(data);
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+    if (loading) return <div className="alert alert-info">Loading...</div>;
+
     console.log(blogs);
 
     return (

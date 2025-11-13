@@ -1,10 +1,8 @@
 import React from 'react'
-import { Outlet, useNavigation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
 const LayoutPublic = () => {
-    const navigation = useNavigation();
-
     const users = [
         { id: 1, name: 'Juan Perez', email: 'juan@gmail.com' },
         { id: 2, name: 'Ana Lopez', email: 'ana@gmail.com' },
@@ -15,12 +13,7 @@ const LayoutPublic = () => {
         <>
             <Navbar />
             <main className='container' >
-                {navigation.state === "loading" && (
-                    <div className='alert alert-info my-5'>Loading...</div>
-                )}
-
                 <Outlet context={{ users: users }} />
-
             </main>
             <footer className='container text-center'>Footer</footer>
         </>
