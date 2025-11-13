@@ -1,18 +1,51 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const { state } = useLocation();
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        navigate('/login', {
+            replace: true,
+        });
+    };
+
     return (
         <nav className="navbar navbar-dark bg-dark">
-            <NavLink to="/" className="btn btn-outline-primary">
-                Home
-            </NavLink>
-            <NavLink to="/about" className="btn btn-outline-primary">
-                About
-            </NavLink>
-            <NavLink to="/blog" className="btn btn-outline-primary">
-                Blog
-            </NavLink>
+            <div className="d-flex align-items-center">
+                <NavLink to="/" className="btn btn-outline-primary me-2">
+                    Home
+                </NavLink>
+                <NavLink to="/about" className="btn btn-outline-primary me-2">
+                    About
+                </NavLink>
+                {state?.logged && (
+                    <NavLink to="/blog" className="btn btn-outline-primary me-2">
+                        Blog
+                    </NavLink>
+                )}
+            </div>
+            
+            <div className="d-flex align-items-center">
+                {state?.logged ? (
+                    <div className="d-flex align-items-center">
+                        <span className="text-light me-3">Hola, {state?.name}</span>
+                        <button className="btn btn-outline-light" onClick={onLogout}>
+                            Cerrar sesión
+                        </button>
+                    </div>
+                ) : (
+                    <div className="d-flex">
+                        <NavLink to="/login" className="btn btn-outline-light me-2">
+                            Iniciar sesión
+                        </NavLink>
+                        <NavLink to="/register" className="btn btn-outline-success">
+                            Registrarse
+                        </NavLink>
+                    </div>
+                )}
+            </div>
         </nav>
     );
 };

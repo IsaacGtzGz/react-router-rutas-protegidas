@@ -1,0 +1,78 @@
+/* Estilos para formularios de autenticación */
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+form h1 {
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+}
+
+.input-group input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #007bff;
+}
+
+.input-group label {
+    margin-top: 8px;
+    color: #666;
+    font-weight: 500;
+    text-align: left;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos adicionales para mejorar la apariencia */
+body {
+    background-color: #f8f9fa;
+}

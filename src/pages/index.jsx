@@ -7,6 +7,9 @@ import LayoutPublic from "../layout/LayoutPublic";
 import Post from "./Post";
 import Create from "./Create";
 import Edit from "./Edit";
+import Login from "./Login";
+import Register from "./Register";
+import { PrivateRoute } from "../components/PrivateRoute";
 import { loaderPost } from "./loaders.jsx";
 
 export const router = createBrowserRouter([
@@ -25,23 +28,46 @@ export const router = createBrowserRouter([
                 element: <About />,
             },
             {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/register", 
+                element: <Register />,
+            },
+            {
                 path: "/blog",
-                element: <Blog />,
+                element: (
+                    <PrivateRoute>
+                        <Blog />
+                    </PrivateRoute>
+                ),
                 loader: loaderBlogs
             },
             {
                 path: "/blog/:id",
-                element: <Post />,
+                element: (
+                    <PrivateRoute>
+                        <Post />
+                    </PrivateRoute>
+                ),
                 loader: loaderPost
             },
-
             {
                 path: "/create",
-                element: <Create />,
+                element: (
+                    <PrivateRoute>
+                        <Create />
+                    </PrivateRoute>
+                ),
             },
             {
                 path: "/edit/:id",
-                element: <Edit />,
+                element: (
+                    <PrivateRoute>
+                        <Edit />
+                    </PrivateRoute>
+                ),
             },
         ]
     }
