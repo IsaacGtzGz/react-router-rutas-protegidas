@@ -7,6 +7,7 @@ import LayoutPublic from "../layout/LayoutPublic";
 import Post from "./Post";
 import Create from "./Create";
 import Edit from "./Edit";
+import Delete from "./Delete";
 import Login from "./Login";
 import Register from "./Register";
 import { PrivateRoute } from "../components/PrivateRoute";
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
                 element: <Login />,
             },
             {
-                path: "/register", 
+                path: "/register",
                 element: <Register />,
             },
             {
@@ -66,6 +67,14 @@ export const router = createBrowserRouter([
                 element: (
                     <PrivateRoute>
                         <Edit />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "/delete/:id",
+                element: (
+                    <PrivateRoute>
+                        <Delete />
                     </PrivateRoute>
                 ),
             },

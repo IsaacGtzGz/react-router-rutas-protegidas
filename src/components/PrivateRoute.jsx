@@ -1,7 +1,8 @@
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export const PrivateRoute = ({ children }) => {
-	const { state } = useLocation();
+    const { isAuthenticated } = useAuth();
 
-	return state?.logged ? children : <Navigate to='/login' />;
+    return isAuthenticated ? children : <Navigate to='/login' />;
 };

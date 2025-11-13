@@ -36,12 +36,9 @@ const Home = () => {
                                 </Link>
 
 
-                                <button
-                                    className="btn btn-danger btn-sm"
-                                    onClick={() => alert('Funcionalidad "Delete" no implementada')}
-                                >
+                                <Link to={`/delete/${user.id}`} className="btn btn-danger btn-sm">
                                     Delete
-                                </button>
+                                </Link>
                             </td>
                         </tr>
                     ))}

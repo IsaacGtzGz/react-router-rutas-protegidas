@@ -1,11 +1,13 @@
 import React from "react";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-    const { state } = useLocation();
+    const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
 
     const onLogout = () => {
+        logout();
         navigate('/login', {
             replace: true,
         });
@@ -20,17 +22,17 @@ const Navbar = () => {
                 <NavLink to="/about" className="btn btn-outline-primary me-2">
                     About
                 </NavLink>
-                {state?.logged && (
+                {isAuthenticated && (
                     <NavLink to="/blog" className="btn btn-outline-primary me-2">
                         Blog
                     </NavLink>
                 )}
             </div>
-            
+
             <div className="d-flex align-items-center">
-                {state?.logged ? (
+                {isAuthenticated ? (
                     <div className="d-flex align-items-center">
-                        <span className="text-light me-3">Hola, {state?.name}</span>
+                        <span className="text-light me-3">Hola, {user?.name}</span>
                         <button className="btn btn-outline-light" onClick={onLogout}>
                             Cerrar sesión
                         </button>
